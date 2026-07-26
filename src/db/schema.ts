@@ -89,6 +89,6 @@ export const inquiries = pgTable("inquiries", {
   projectType: text("project_type").default(""),
   budget: text("budget").default(""),
   message: text("message").notNull(),
-  read: boolean("read").notNull().default(false),
+  read: boolean("read").default(false),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
