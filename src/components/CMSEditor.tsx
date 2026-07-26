@@ -251,7 +251,7 @@ function Editor({ section }: { section: SectionId }) {
                   <T
                     value={n.label}
                     onChange={(v) =>
-                      set({ ...c, nav: c.nav.map((x, j) => (j === i ? { ...x, label: v } : x)) })
+                      set({ ...c, nav: c.nav.map((x: any, j: number) => (j === i ? { ...x, label: v } : x)) })
                     }
                   />
                 </div>
