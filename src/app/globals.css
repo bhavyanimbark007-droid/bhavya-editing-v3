@@ -1,0 +1,80 @@
+/* EXACT copy of the Vite project's src/index.css (Tailwind v4, CSS-first) */
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@1,500;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-lime: #c6f53f;
+  --color-lime-soft: #d7ff5e;
+  --color-ink: #060910;
+  --color-ink-2: #0a0e17;
+  --color-ink-3: #0a0a0c;
+  --color-panel: #10141c;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-muted: #97a1ae;
+  --font-display: "Anton", "Arial Narrow", sans-serif;
+  --font-body: "Space Grotesk", ui-sans-serif, sans-serif;
+  --font-script: "Playfair Display", Georgia, serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--color-ink);
+  color: #e8ecf1;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+::selection { background: var(--color-lime); color: #0a0a0a; }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #07090f; }
+::-webkit-scrollbar-thumb { background: var(--color-lime); border-radius: 8px; border: 2px solid #07090f; }
+
+.font-display { font-family: var(--font-display); }
+.font-script { font-family: var(--font-script); }
+
+.grid-bg {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.dot-bg {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); will-change: opacity, transform; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.animate-marquee { animation: marquee 28s linear infinite; }
+.animate-marquee-slow { animation: marquee 55s linear infinite; }
+.marquee-paused:hover .animate-marquee, .marquee-paused:hover .animate-marquee-slow { animation-play-state: paused; }
+
+@keyframes drift { 0%, 100% { transform: translate(0, 0); opacity: 0.5; } 50% { transform: translate(14px, -22px); opacity: 1; } }
+.particle { animation: drift 7s ease-in-out infinite; }
+
+@keyframes glowPulse { 0%, 100% { box-shadow: 0 0 24px rgba(198, 245, 63, 0.45), 0 0 60px rgba(198, 245, 63, 0.18); } 50% { box-shadow: 0 0 36px rgba(198, 245, 63, 0.7), 0 0 90px rgba(198, 245, 63, 0.28); } }
+.glow-lime { animation: glowPulse 3s ease-in-out infinite; }
+
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+.animate-blink { animation: blink 1.6s ease-in-out infinite; }
+
+@keyframes orbitDash { to { stroke-dashoffset: -920; } }
+.orbit-arc { stroke-dasharray: 150 770; animation: orbitDash 7s linear infinite; }
+
+.text-glow-lime { text-shadow: 0 0 40px rgba(198, 245, 63, 0.5), 0 0 120px rgba(198, 245, 63, 0.25); }
+.text-glow-white { text-shadow: 0 0 50px rgba(255, 255, 255, 0.35); }
+
+@keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-8px); } 40% { transform: translateX(8px); } 60% { transform: translateX(-5px); } 80% { transform: translateX(5px); } }
+.animate-shake { animation: shake 0.45s ease-in-out; }
+
+@keyframes toastIn { from { transform: translateX(120%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+.animate-toast-in { animation: toastIn 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.animate-fade-in { animation: fadeIn 0.25s ease-out; }
+@keyframes modalIn { from { transform: scale(0.92) translateY(16px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+.animate-modal-in { animation: modalIn 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
