@@ -68,7 +68,7 @@ function emit() { listeners.forEach((l) => l()); }
 function subscribe(cb: () => void) { listeners.add(cb); return () => listeners.delete(cb); }
 function getSnapshot(): SiteContent | null { return current; }
 
-export function useContent(): SiteContent {
+export function useContent(): any {
   const ctx = useContext(ContentReadyContext);
   // subscribe so admin edits in the same tab re-render instantly
   useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
@@ -77,7 +77,7 @@ export function useContent(): SiteContent {
   return current;
 }
 
-const ContentReadyContext = createContext<SiteContent | null>(null);
+const ContentReadyContext = createContext<any>(null);
 
 export function SiteContentProvider({ data, children }: { data: SiteContent; children: ReactNode }) {
   useEffect(() => {
