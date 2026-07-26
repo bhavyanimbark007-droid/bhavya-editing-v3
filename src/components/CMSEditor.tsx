@@ -283,7 +283,7 @@ function Editor({ section }: { section: SectionId }) {
                   key={i}
                   title={card.title || `Card ${i + 1}`}
                   onRemove={() =>
-                    set({ ...c, hero: { ...c.hero, cards: c.hero.cards.filter((_, j) => j !== i) } })
+                    set({ ...c, hero: { ...c.hero, cards: c.hero.cards.filter((_: any, j: number) => j !== i)
                   }
                 >
                   <Row>
