@@ -245,7 +245,7 @@ function Editor({ section }: { section: SectionId }) {
               NAVIGATION LABELS
             </p>
             <div className="space-y-2">
-              {c.nav.map((n, i) => (
+              {c.nav.map((n: any, i: number) => (
                 <div key={n.id} className="flex items-center gap-2">
                   <span className="w-20 shrink-0 truncate text-xs text-gray-600">#{n.id}</span>
                   <T
