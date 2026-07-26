@@ -90,16 +90,24 @@ export function SiteContentProvider({ data, children }: { data: SiteContent; chi
 
 function persistToServer() {
   if (saveTimer) clearTimeout(saveTimer);
+
   saveTimer = setTimeout(async () => {
     try {
-      await fetch("/api/admin/settings", {
+      const res = await fetch("/api/admin/settings", {
         method: "PUT",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(current),
       });
-    } catch {
-      /* offline / not authed — edits stay local for the session */
+
+      if (!res.ok) {
+        const text = await res.text();
+        console.error("Save failed:", text);
+      } else {
+        console.log("✅ Content saved to DB");
+      }
+    } catch (err) {
+      console.error("❌ Network error while saving:", err);
     }
   }, 400);
 }
