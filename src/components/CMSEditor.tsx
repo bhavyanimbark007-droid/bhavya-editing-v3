@@ -278,7 +278,7 @@ function Editor({ section }: { section: SectionId }) {
           <div>
             <p className="mb-2 text-[11px] font-semibold tracking-[0.15em] text-gray-500">PREVIEW CARDS</p>
             <div className="space-y-3">
-              {c.hero.cards.map((card, i) => (
+              {c.hero.cards.map((card: any, i: number) => (
                 <ItemCard
                   key={i}
                   title={card.title || `Card ${i + 1}`}
