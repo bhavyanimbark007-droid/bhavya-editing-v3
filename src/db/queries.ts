@@ -204,7 +204,8 @@ export async function applyContent(c: any) {
     .where(eq(siteSettings.id, 1));
 
   // collections: replace-all strategy keeps sort order identical to the editor
-  await db.delete(portfolioItems);
+  await db.delete(portfolioItems).where(eq(portfolioItems.category, "hero"));
+  await db.delete(portfolioItems).where(eq(portfolioItems.category, "work"));
   for (const [i, card] of (c.hero.cards as any[]).entries()) {
     await db.insert(portfolioItems).values({ tag: card.tag, title: card.title, sub: "", thumbnailUrl: card.img, videoUrl: card.video, category: "hero", sort: i });
   }
